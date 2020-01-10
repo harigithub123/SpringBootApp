@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Full stack CRUD Example with Spring Boot, MySQL and VueJS</title>
+  <link href="https://unpkg.com/bootstrap@3.4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/users.css" rel="stylesheet"/>
+</head>
+<body>
+  <div class="container">
+    <h1>User CRUD</h1>
+    <main id="app">
+      <router-view></router-view>
+    </main>
+  </div>
+
+  <template id="user">
+    <div>
+      <h2>{{ user.name }}</h2>
+      <b>Description: </b>
+      <div>{{ user.description }}</div>
+      <b>Price:</b>
+      <div>{{ user.price }}<span class="glyphicon glyphicon-euro"></span></div>
+      <br/>
+      <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+      <a>
+        <router-link to="/">Back to user list</router-link>
+      </a>
+    </div>
+  </template>
+
+  <template id="user-list">
+    <div>
+      <div class="actions">
+        <a class="btn btn-default">
+          <router-link :to="{path: '/add-user'}">
+            <span class="glyphicon glyphicon-plus"></span>
+            Add user
+          </router-link>
+        </a>
+      </div>
+      <div class="filters row">
+        <div class="form-group col-sm-3">
+          <input placeholder="Search" v-model="searchKey" class="form-control" id="search-element" requred/>
+        </div>
+      </div>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th class="col-sm-2">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="user in filteredUsers">
+          <!-- tr v-for="user in users" -->
+          <!-- tr v-for="user in users | filterBy searchKey in 'name'" -->
+          <td>
+            <a>
+              <router-link :to="{name: 'user', params: {user_id: user.id}}">{{ user.name }}</router-link>
+            </a>
+          </td>
+          <td>{{ user.description }}</td>
+          <td>
+            {{ user.price }}
+            <span class="glyphicon glyphicon-euro" aria-hidden="true"></span>
+          </td>
+          <td>
+            <a class="btn btn-warning btn-xs">
+              <router-link :to="{name: 'user-edit', params: {user_id: user.id}}">Edit</router-link>
+            </a>
+            <a class="btn btn-danger btn-xs">
+              <router-link :to="{name: 'user-delete', params: {user_id: user.id}}">Delete</router-link>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </template>
+
+
+  <template id="add-user">
+    <div>
+      <h2>Add new user</h2>
+      <form @submit="createUser">
+        <div class="form-group">
+          <label for="add-name">Name</label>
+          <input class="form-control" id="add-name" v-model="user.name" required/>
+        </div>
+        <div class="form-group">
+          <label for="add-description">Description</label>
+          <textarea class="form-control" id="add-description" rows="10" v-model="user.description"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="add-price">Price, <span class="glyphicon glyphicon-euro"></span></label>
+          <input type="number" class="form-control" id="add-price" v-model="user.price"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a class="btn btn-default">
+          <router-link to="/">Cancel</router-link>
+        </a>
+      </form>
+    </div>
+  </template>
+
+  <template id="user-edit">
+    <div>
+      <h2>Edit user</h2>
+      <form @submit="updateUser">
+        <div class="form-group">
+          <label for="edit-name">Name</label>
+          <input class="form-control" id="edit-name" v-model="user.name" required/>
+        </div>
+        <div class="form-group">
+          <label for="edit-description">Description</label>
+          <textarea class="form-control" id="edit-description" rows="3" v-model="user.description"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="edit-price">Price, <span class="glyphicon glyphicon-euro"></span></label>
+          <input type="number" class="form-control" id="edit-price" v-model="user.price"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a class="btn btn-default">
+          <router-link to="/">Cancel</router-link>
+        </a>
+      </form>
+    </div>
+  </template>
+
+  <template id="user-delete">
+    <div>
+      <h2>Delete user {{ user.name }}</h2>
+      <form @submit="deleteUser">
+        <p>The action cannot be undone.</p>
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a class="btn btn-default">
+          <router-link to="/">Cancel</router-link>
+        </a>
+      </form>
+    </div>
+  </template>
+
+  <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router@3.0.2/dist/vue-router.js"></script>
+  <script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
+  <script src="/users.js"></script>
+
+</body>
+</html>
