@@ -13,8 +13,10 @@ public interface UserService {
 	public void addUser(UserRequest p);
 	public void updateUser(UserRequest p);
 	public List<User> listUsers();
-	public User getUserById(int id);
-	public User getUserByMobileNumber(int id);
-	public void removeUser(int id);
+	public User getUserById(Long id);
+	public User getUserByMobileNumber(String id);
+	public User findByUserId(String id);
+	public User findByUserName(String userName);
+	public void removeUser(Long id);
 	
 }

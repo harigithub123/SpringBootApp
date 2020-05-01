@@ -1,64 +1,93 @@
 package com.billing.model;
 
-import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
-import lombok.Data;
-
-@Entity 
-
-@Data
+@Entity
+@Table(	name = "users", 
+		uniqueConstraints = { 
+			@UniqueConstraint(columnNames = "userName"),
+			@UniqueConstraint(columnNames = "emailId") 
+		})
 public class User {
-	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-	
-	private String userId;
-	private String name;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@NotBlank
+	@Size(max = 20)
+	private String userName;
+
+	@NotBlank
+	@Size(max = 50)
+	@Email
 	private String emailId;
-	private String phoneNumber;
-	private String userType;
-	private Date dob;
-	public String getUserId() {
-		return userId;
+
+	@NotBlank
+	@Size(max = 120)
+	private String password;
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(	name = "user_roles", 
+				joinColumns = @JoinColumn(name = "user_id"), 
+				inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<>();
+
+	public User() {
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+
+	public User(String username, String email, String password) {
+		this.userName = username;
+		this.emailId = email;
+		this.password = password;
 	}
-	public String getName() {
-		return name;
+
+	public User(Long userId) {
+		this.id = userId;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public Long getId() {
+		return id;
 	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String username) {
+		this.userName = username;
+	}
+
 	public String getEmailId() {
 		return emailId;
 	}
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
+
+	public void setEmailId(String email) {
+		this.emailId = email;
 	}
-	public String getPhoneNumber() {
-		return phoneNumber;
+
+	public String getPassword() {
+		return password;
 	}
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
-	public String getUserType() {
-		return userType;
+
+	public Set<Role> getRoles() {
+		return roles;
 	}
-	public void setUserType(String userType) {
-		this.userType = userType;
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
-	public Date getDob() {
-		return dob;
-	}
-	public void setDob(Date dob) {
-		this.dob = dob;
-	}
-	
 }

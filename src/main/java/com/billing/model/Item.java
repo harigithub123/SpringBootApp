@@ -15,33 +15,60 @@ public class Item {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-	
+    
 	private String itemName;
+	
+	private Double purchaseRate;
+	
+	private Double itemPrice;
+	
 	private int displayOrder;
-	private double itemPrice;
+
+	public Item() {
+	}
+
+	public Item(Long itemId) {
+		this.id = itemId;
+	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getItemName() {
 		return itemName;
 	}
+
 	public void setItemName(String itemName) {
 		this.itemName = itemName;
 	}
+
+	public Double getItemPrice() {
+		return itemPrice;
+	}
+
+	public void setItemPrice(Double itemPrice) {
+		this.itemPrice = itemPrice;
+	}
+
 	public int getDisplayOrder() {
 		return displayOrder;
 	}
+
 	public void setDisplayOrder(int displayOrder) {
 		this.displayOrder = displayOrder;
 	}
-	public double getItemPrice() {
-		return itemPrice;
+
+	public Double getPurchaseRate() {
+		return purchaseRate;
 	}
-	public void setItemPrice(double itemPrice) {
-		this.itemPrice = itemPrice;
+
+	public void setPurchaseRate(Double purchaseRate) {
+		this.purchaseRate = purchaseRate;
 	}
 	
 }

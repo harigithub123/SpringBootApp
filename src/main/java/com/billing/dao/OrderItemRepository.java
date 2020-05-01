@@ -1,9 +1,11 @@
 package com.billing.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import com.billing.model.OrderItem;
+import com.billing.model.OrderInfoDetails;
 
-public interface OrderItemRepository  extends JpaRepository<OrderItem, Long> {
+@Repository
+public interface OrderItemRepository  extends JpaRepository<OrderInfoDetails, Long> {
 
 }

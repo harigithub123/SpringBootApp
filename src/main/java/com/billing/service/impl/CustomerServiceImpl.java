@@ -5,56 +5,51 @@ package com.billing.service.impl;
 import java.util.List;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
 import org.springframework.stereotype.Service;
 
 import com.billing.dao.CustomerRepository;
-import com.billing.dao.CustomerTransactionRespository;
 import com.billing.model.Customer;
 import com.billing.request.CustomerRequest;
-import com.billing.request.CustomerTransactionRequest;
+import com.billing.service.CustomerService;
 import com.billing.service.util.ServiceRequestUtil;
 
 @Service
-public class CustomerServiceImpl {
+public class CustomerServiceImpl implements CustomerService {
 	
 	private CustomerRepository customerRespository;
-	private CustomerTransactionRespository custTranRepository;
 	
-	public CustomerServiceImpl(CustomerRepository customerRepository, CustomerTransactionRespository custTranRepository ) {
+	public CustomerServiceImpl(CustomerRepository customerRepository) {
 		this.customerRespository = customerRepository;
-		this.custTranRepository = custTranRepository;
 	}
 
-	@Transactional
+	@Override
 	public void addCustomer(CustomerRequest request) {
 		this.customerRespository.save(ServiceRequestUtil.getCustomer(request));
 	}
 
-	@Transactional
+	@Override
 	public void updateCustomer(CustomerRequest request) {
 		this.customerRespository.save(ServiceRequestUtil.getCustomer(request));
 	}
 
-	@Transactional
+	@Override
 	public List<Customer> listCustomers() {
 		return this.customerRespository.findAll();
 	}
 
-	@Transactional
-	public Optional<Customer> getCustomerById(Long id) {
-		return this.customerRespository.findById(id);
+	@Override
+	public Customer getCustomerById(Long id) {
+		Optional<Customer> customer = this.customerRespository.findById(id);
+		if(customer != null) {
+			return customer.get();
+		}
+		return null;
 	}
 
-	@Transactional
+	@Override
 	public void removeCustomer(Long id) {
 		this.customerRespository.deleteById(id);
-	}
-	
-	@Transactional
-	public void makeCustomerTransaction(CustomerTransactionRequest request) {
-		this.custTranRepository.save(ServiceRequestUtil.getCustomerTransaction(request));
+		
 	}
 
 }

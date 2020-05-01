@@ -4,7 +4,7 @@ services:
     container_name: hk-mysql
     image: mysql/mysql-server:5.7
     environment:
-      MYSQL_DATABASE: matoshree
+      MYSQL_DATABASE: billing
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_ROOT_HOST: '%'
     ports:

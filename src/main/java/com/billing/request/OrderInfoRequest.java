@@ -1,6 +1,8 @@
 package com.billing.request;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
@@ -11,20 +13,30 @@ public class OrderInfoRequest  implements Serializable {
 	private static final long serialVersionUID = -187514924337443316L;
 	
 	@JsonProperty("id")
-	@NotNull(message="MISSING_ID")
 	private Long id;
 	
 	@JsonProperty("customer-id")
 	@NotNull(message="MISSING_CUSTOMER_ID")
-	private String customerId;
+	private Long customerId;
 	
-	@NotNull(message="MISSING_O_ORDER")
-	@JsonProperty("display-order")
-	private Integer displayOrder;
+	@JsonProperty("user-id")
+	@NotNull(message="MISSING_USER_ID")
+	private Long userId;
 	
-	@NotNull(message="MISSING_ITEM_PRICE")
-	@JsonProperty("item-price")
-	private Double itemPrice;
+	@NotNull(message="MISSING_ORDER_DATE")
+	@JsonProperty("order-date")
+	private Date orderDate;
+	
+	@JsonProperty("items")
+	private List<OrderItemRequest> items;
+	
+	public List<OrderItemRequest> getItems() {
+		return items;
+	}
+
+	public void setItems(List<OrderItemRequest> items) {
+		this.items = items;
+	}
 
 	public Long getId() {
 		return id;
@@ -33,29 +45,30 @@ public class OrderInfoRequest  implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public String getItemName() {
-		return itemName;
+	
+	public Long getCustomerId() {
+		return customerId;
 	}
 
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
 	}
 
-	public Integer getDisplayOrder() {
-		return displayOrder;
+	public Date getOrderDate() {
+		return orderDate;
 	}
 
-	public void setDisplayOrder(Integer displayOrder) {
-		this.displayOrder = displayOrder;
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
 	}
 
-	public Double getItemPrice() {
-		return itemPrice;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setItemPrice(Double itemPrice) {
-		this.itemPrice = itemPrice;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
+	
 	
 }

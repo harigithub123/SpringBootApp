@@ -13,7 +13,6 @@ public interface CustomerService {
 	public void addCustomer(CustomerRequest p);
 	public void updateCustomer(CustomerRequest p);
 	public List<Customer> listCustomers();
-	public Customer getCustomerById(int id);
-	public Customer getCustomerByMobileNumber(int id);
-	public void removeCustomer(int id);
+	public Customer getCustomerById(Long id);
+	public void removeCustomer(Long id);
 }

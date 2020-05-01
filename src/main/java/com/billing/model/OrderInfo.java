@@ -1,16 +1,22 @@
 package com.billing.model;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 
@@ -23,17 +29,26 @@ public class OrderInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
-	private String customerId;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+	@JoinColumn(name="customer_id")
+	private Customer customer;
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+	@JoinColumn(name="user_id")
+	private User user;
+	
 	private Date orderDate;
 	
-	@OneToMany(mappedBy = "orderInfo", cascade = CascadeType.ALL)
-	private Set<Object> items;
+	private Date modificationDate;
 	
-	public OrderInfo(String customerId, OrderItem items, Date orderDate) {
-        this.customerId = customerId;
-        this.items = Stream.of(items).collect(Collectors.toSet());
-        this.orderDate = orderDate;
-    }
+	private String invoiceNo;
+	
+	private String paymentStatus;
+	
+	@OneToMany(mappedBy="orderInfo", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@Column(nullable = true)
+	@JsonManagedReference
+	private List<OrderInfoDetails> items = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -43,12 +58,20 @@ public class OrderInfo {
 		this.id = id;
 	}
 
-	public String getCustomerId() {
-		return customerId;
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	public void setCustomerId(String customerId) {
-		this.customerId = customerId;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Date getOrderDate() {
@@ -59,12 +82,36 @@ public class OrderInfo {
 		this.orderDate = orderDate;
 	}
 
-	public Set<Object> getItems() {
+	public String getPaymentStatus() {
+		return paymentStatus;
+	}
+
+	public void setPaymentStatus(String paymentStatus) {
+		this.paymentStatus = paymentStatus;
+	}
+
+	public List<OrderInfoDetails> getItems() {
 		return items;
 	}
 
-	public void setItems(Set<Object> items) {
+	public void setItems(List<OrderInfoDetails> items) {
 		this.items = items;
+	}
+
+	public Date getModificationDate() {
+		return modificationDate;
+	}
+
+	public void setModificationDate(Date modificationDate) {
+		this.modificationDate = modificationDate;
+	}
+
+	public String getInvoiceNo() {
+		return invoiceNo;
+	}
+
+	public void setInvoiceNo(String invoiceNo) {
+		this.invoiceNo = invoiceNo;
 	}
 	
 }

@@ -1,5 +1,6 @@
 package com.billing.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,13 +17,28 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
+	@Column(unique = true)
 	private String officeNo;
-	private String contactPerson;
-	private String officeName;
-	private String phoneNumber;
-	private String emailId;
-	private boolean needToSendSms;
 	
+	private String contactPerson;
+	
+	@Column(unique = true)
+	private String officeName;
+	
+	@Column(unique = true)
+	private String mobileNumber;
+	
+	@Column(unique = true)
+	private String emailId;
+	private boolean isSmsRequired;
+	
+	
+	public Customer() {
+	}
+	
+	public Customer(Long customerId) {
+		this.id = customerId;
+	}
 	
 	public Long getId() {
 		return id;
@@ -49,10 +65,10 @@ public class Customer {
 		this.officeName = officeName;
 	}
 	public String getMobileNumber() {
-		return phoneNumber;
+		return mobileNumber;
 	}
-	public void setPhoneNumber(String mobileNumber) {
-		this.phoneNumber = mobileNumber;
+	public void setMobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
 	}
 	public String getEmailId() {
 		return emailId;
@@ -60,11 +76,10 @@ public class Customer {
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
-	public boolean isNeedToSendSms() {
-		return needToSendSms;
+	public boolean isSmsRequired() {
+		return isSmsRequired;
 	}
-	public void setNeedToSendSms(boolean needToSendSms) {
-		this.needToSendSms = needToSendSms;
-	} 
-	
+	public void setIsSmsRequired(boolean isSmsRequired) {
+		this.isSmsRequired = isSmsRequired;
+	}
 }

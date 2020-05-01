@@ -11,7 +11,6 @@ public class ItemRequest  implements Serializable {
 	private static final long serialVersionUID = -187514924337443316L;
 	
 	@JsonProperty("id")
-	@NotNull(message="MISSING_ID")
 	private Long id;
 	
 	@JsonProperty("item-name")

@@ -2,10 +2,15 @@ package com.billing.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.Data;
 
@@ -18,12 +23,16 @@ public class CustomerTransaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
-	private Date tranDate;
-	private String tranMode;
-	private double tranAmount;
-	private String tranComment;
+	private Date transactionDate;
+	private String transactionMode;
+	private double amount;
+	private String comments;
 	private String receivedBy;
-	private Long customerId;
+	private String referenceNo;
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+	@JoinColumn(name="customer_id")
+	private Customer customer;
 	
 	public Long getId() {
 		return id;
@@ -31,29 +40,29 @@ public class CustomerTransaction {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Date getTranDate() {
-		return tranDate;
+	public Date getTransactionDate() {
+		return transactionDate;
 	}
-	public void setTranDate(Date tranDate) {
-		this.tranDate = tranDate;
+	public void setTransactionDate(Date transactionDate) {
+		this.transactionDate = transactionDate;
 	}
-	public String getTranMode() {
-		return tranMode;
+	public String getTransactionMode() {
+		return transactionMode;
 	}
-	public void setTranMode(String tranMode) {
-		this.tranMode = tranMode;
+	public void setTransactionMode(String transactionMode) {
+		this.transactionMode = transactionMode;
 	}
-	public double getTranAmount() {
-		return tranAmount;
+	public double getAmount() {
+		return amount;
 	}
-	public void setTranAmount(double tranAmount) {
-		this.tranAmount = tranAmount;
+	public void setAmount(double amount) {
+		this.amount = amount;
 	}
-	public String getTranComment() {
-		return tranComment;
+	public String getComments() {
+		return comments;
 	}
-	public void setTranComment(String tranComment) {
-		this.tranComment = tranComment;
+	public void setComments(String comments) {
+		this.comments = comments;
 	}
 	public String getReceivedBy() {
 		return receivedBy;
@@ -61,11 +70,16 @@ public class CustomerTransaction {
 	public void setReceivedBy(String receivedBy) {
 		this.receivedBy = receivedBy;
 	}
-	public Long getCustomerId() {
-		return customerId;
+	public String getReferenceNo() {
+		return referenceNo;
 	}
-	public void setCustomerId(Long customerId) {
-		this.customerId = customerId;
+	public void setReferenceNo(String referenceNo) {
+		this.referenceNo = referenceNo;
 	}
-	
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 }

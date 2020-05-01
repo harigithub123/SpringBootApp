@@ -1,7 +1,5 @@
 package com.billing.controller;
 
-import java.util.Optional;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.billing.model.User;
 import com.billing.request.UserRequest;
 import com.billing.response.Errors;
 import com.billing.service.impl.UserServiceImpl;
@@ -51,22 +48,10 @@ public class UserController {
 			return new ResponseEntity<Object>(HttpStatus.OK);
 	}
 	
-	@GetMapping(path="/getby", produces=MediaType.APPLICATION_JSON_VALUE)
+	/*@GetMapping(path="/getby", produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> getUsers() {
 		Optional<User> users  = this.userService.getUserByPhoneNumber("1234123412");
 		return new ResponseEntity<Object>(users, HttpStatus.OK);
-	}
-	
-	public User getUser(UserRequest request) {
-		User user = new User();
-		user.setDob(request.getDob());
-		user.setEmailId(request.getEmailId());
-		user.setName(request.getName());
-		user.setPhoneNumber(request.getMobileNumber());
-		user.setUserId(request.getUserId());
-		user.setUserType(request.getUserType());
-		return user;
-	}
-	
+	}*/
 	
 }

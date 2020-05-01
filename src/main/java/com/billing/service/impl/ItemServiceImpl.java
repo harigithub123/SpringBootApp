@@ -7,45 +7,50 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.billing.dao.ItemRepository;
 import com.billing.model.Item;
 import com.billing.request.ItemRequest;
+import com.billing.service.ItemService;
 import com.billing.service.util.ServiceRequestUtil;
 
 @Service
-public class ItemServiceImpl {
+public class ItemServiceImpl implements ItemService {
 	
-	private ItemRepository itemRespository;
+	private ItemRepository itemRepository;
+	private ServiceRequestUtil util = new ServiceRequestUtil();
 	
-	public ItemServiceImpl(ItemRepository itemRepository ) {
-		this.itemRespository = itemRepository;
+	public ItemServiceImpl(ItemRepository itemRepository) {
+		this.itemRepository = itemRepository;
 	}
 
 	@Transactional
 	public void addItem(ItemRequest request) {
-		this.itemRespository.save(ServiceRequestUtil.getItem(request));
+		this.itemRepository.save(util.getItem(request));
 	}
 
 	@Transactional
 	public void updateItem(ItemRequest request) {
-		this.itemRespository.save(ServiceRequestUtil.getItem(request));
+		this.itemRepository.save(util.getItem(request));
 	}
 
 	@Transactional
 	public List<Item> listItems() {
-		return this.itemRespository.findAll();
+		Sort s = new Sort(Sort.Direction.ASC, "displayOrder");
+		return this.itemRepository.findAll(s);
 	}
 
-	@Transactional
+	@Override
 	public Optional<Item> getItemById(Long id) {
-		return this.itemRespository.findById(id);
+		return this.itemRepository.findById(id);
 	}
 
-	@Transactional
+	@Override
 	public void removeItem(Long id) {
-		this.itemRespository.deleteById(id);
+		this.itemRepository.deleteById(id);
+		
 	}
 	
 }
