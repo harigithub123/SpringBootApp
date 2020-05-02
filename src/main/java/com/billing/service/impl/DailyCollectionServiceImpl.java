@@ -27,23 +27,23 @@ public class DailyCollectionServiceImpl implements DailyCollectionService {
 	}
 
 	@Transactional
-	public void addPerson(DailyCollectionRequest request) {
+	public void addDailyCollection(DailyCollectionRequest request) {
 		this.dailyCollectionRespository.save(ServiceRequestUtil.getDailyCollection(request));
 	}
 
 	@Transactional
-	public void updatePerson(DailyCollectionRequest request) {
+	public void updateDailyCollection(DailyCollectionRequest request) {
 		this.dailyCollectionRespository.save(ServiceRequestUtil.getDailyCollection(request));
 	}
 
 	@Transactional
-	public List<DailyCollectionResonse> listPersons() {
+	public List<DailyCollectionResonse> listCollections() {
 		List<DailyCollection> persons = this.dailyCollectionRespository.findAll();
 		return getPersonResponse(persons);
 	}
 
 	@Transactional
-	public DailyCollectionResonse getPersonById(Long id) {
+	public DailyCollectionResonse getCollectionById(Long id) {
 		Optional<DailyCollection> person = this.dailyCollectionRespository.findById(id);
 		if(person != null) {
 			return getPersonResponse(person.get());
@@ -52,7 +52,7 @@ public class DailyCollectionServiceImpl implements DailyCollectionService {
 	}
 
 	@Transactional
-	public void removePerson(Long id) {
+	public void removeCollection(Long id) {
 		this.dailyCollectionRespository.deleteById(id);
 	}
 	

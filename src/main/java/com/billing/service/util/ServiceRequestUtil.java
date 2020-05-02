@@ -22,6 +22,7 @@ import com.billing.model.ItemTransactionDetails;
 import com.billing.model.Login;
 import com.billing.model.OrderInfo;
 import com.billing.model.OrderInfoDetails;
+import com.billing.model.Person;
 import com.billing.model.SalaryRecord;
 import com.billing.model.User;
 import com.billing.request.CustomerRequest;
@@ -35,6 +36,7 @@ import com.billing.request.ItemTransactionRequest;
 import com.billing.request.LoginRequest;
 import com.billing.request.OrderInfoRequest;
 import com.billing.request.OrderItemRequest;
+import com.billing.request.PersonRequestResponse;
 import com.billing.request.SalaryRecordRequest;
 import com.billing.request.UserRequest;
 import com.billing.response.ExpenseResponse;
@@ -273,5 +275,13 @@ public class ServiceRequestUtil {
 			amount+=d.getQuantity()*d.getItem().getItemPrice();
 		}
 		return amount;
+	}
+
+	public static Person getPerson(PersonRequestResponse request) {
+		Person p = new Person();
+		p.setId(request.getId());
+		p.setMobileNumber(request.getMobileNumber());
+		p.setName(request.getMobileNumber());
+		return p;
 	}
 }

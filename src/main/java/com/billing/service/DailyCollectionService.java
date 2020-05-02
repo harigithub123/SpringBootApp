@@ -10,9 +10,9 @@ import com.billing.response.DailyCollectionResonse;
 
 @Service
 public interface DailyCollectionService {
-	public void addPerson(DailyCollectionRequest p);
-	public void updatePerson(DailyCollectionRequest p);
-	public List<DailyCollectionResonse> listPersons();
-	public DailyCollectionResonse getPersonById(Long id);
-	public void removePerson(Long id);
+	public void addDailyCollection(DailyCollectionRequest p);
+	public void updateDailyCollection(DailyCollectionRequest p);
+	public List<DailyCollectionResonse> listCollections();
+	public DailyCollectionResonse getCollectionById(Long id);
+	public void removeCollection(Long id);
 }
