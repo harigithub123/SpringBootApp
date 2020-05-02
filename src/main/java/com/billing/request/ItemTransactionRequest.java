@@ -12,19 +12,19 @@ public class ItemTransactionRequest {
 	private static final long serialVersionUID = -187514924337443316L;
 	
 	@NotNull(message="MISSING_TRANSACTION_DATE")
-	@JsonProperty("transaction-date")
+	//@JsonProperty("transaction-date")
 	private Date transactionDate;
 	
 	//@NotNull(message="MISSING_TRANSACTION_DATE")
-	@JsonProperty("user-id")
+	//@JsonProperty("user-id")
 	private Long userId;
 	
 	//@NotNull(message="MISSING_TRANSACTION_DATE")
-	@JsonProperty("transaction-type")
+	//@JsonProperty("transaction-type")
 	private String transactionType;
 	
 	@NotNull(message="MISSING_ITEMS")
-	@JsonProperty("items")
+	//@JsonProperty("items")
 	private List<OrderItemRequest> items;
 	
 	public Long getUserId() {

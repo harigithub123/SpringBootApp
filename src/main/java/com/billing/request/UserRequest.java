@@ -18,32 +18,32 @@ public class UserRequest implements Serializable {
 	private static final long serialVersionUID = -187514924337443316L;
 
 
-	@JsonProperty("user-id")
+	////@JsonProperty("user-id")
 	@NotNull(message="MISSING_USER_ID")
 	private String userId;
 	
-	@JsonProperty("name")
+	////@JsonProperty("name")
 	@NotNull(message="MISSING_NAME")
 	private String name;
 	
 	@NotNull(message="MISSING_EMAIL_ID")
 	@Pattern(regexp=AppConstants.EMAIL_REGEX, message="INVALID_EMAIL_ID")
-	@JsonProperty("email-id")
+	////@JsonProperty("email-id")
 	private String emailId;
 	
 	@Size(min=10, max=10, message="INVALID_MOBILE_NUMBER")
 	@NotNull(message="MISSING_MOBILE_NUMBER")
-	@JsonProperty("mobile-number")
+	////@JsonProperty("mobile-number")
 	private String mobileNumber;
 	
 	@NotNull(message="MISSING_USER_TYPE")
 	@UserType
-	@JsonProperty("user-type")
+	////@JsonProperty("user-type")
 	private String userType;
 	
 	@NotNull(message="MISSING_DOB")
 	@DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
-	@JsonProperty("dob")
+	////@JsonProperty("dob")
 	private Date dob;
 	
 	public String getUserId() {

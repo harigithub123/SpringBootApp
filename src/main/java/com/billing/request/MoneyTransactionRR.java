@@ -8,34 +8,34 @@ public class MoneyTransactionRR {
 
 		private static final long serialVersionUID = -187514924337443316L;
 		
-		@JsonProperty("id")
+		//@JsonProperty("id")
 		private Long id;
 		
-		@JsonProperty("person-id")
+		//@JsonProperty("person-id")
 		private Long personId;
 		
-		@JsonProperty("name")
+		//@JsonProperty("name")
 		private String name;
 		
-		@JsonProperty("amount")
+		//@JsonProperty("amount")
 		private double amount;
 		
-		@JsonProperty("transaction-mode")
+		//@JsonProperty("transaction-mode")
 		private String transactionMode;
 		
-		@JsonProperty("transaction-date")
+		//@JsonProperty("transaction-date")
 		private Date transactionDate;
 		
-		@JsonProperty("given-by")
+		//@JsonProperty("given-by")
 		private String givenBy;
 		
-		@JsonProperty("reference-no")
+		//@JsonProperty("reference-no")
 		private String referenceNo;
 		
-		@JsonProperty("comments")
+		//@JsonProperty("comments")
 		private String comments;
 		
-		@JsonProperty("type")
+		//@JsonProperty("type")
 		private String type;
 
 		public Long getId() {

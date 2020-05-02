@@ -9,37 +9,37 @@ public class EmployeeTransactionRequest implements Serializable {
 
 		private static final long serialVersionUID = -187514924337443316L;
 		
-		@JsonProperty("id")
+		//@JsonProperty("id")
 		private Long id;
 		
-		@JsonProperty("employee-id")
+		//@JsonProperty("employee-id")
 		//@NotNull(message="MISSING_OFFICE_NO")
 		private Long employeeId;
 		
 		//@NotNull(message="MISSING_OFFICE_NAME")
-		@JsonProperty("amount")
+		//@JsonProperty("amount")
 		private double amount;
 		
 		//@NotNull(message="MISSING_EMAIL_ID")
 		//@Pattern(regexp=AppConstants.EMAIL_REGEX, message="INVALID_EMAIL_ID")
-		@JsonProperty("transaction-mode")
+		//@JsonProperty("transaction-mode")
 		private String transactionMode;
 		
 		//@NotNull(message="MISSING_EMAIL_ID")
 		//@Pattern(regexp=AppConstants.EMAIL_REGEX, message="INVALID_EMAIL_ID")
-		@JsonProperty("transaction-date")
+		//@JsonProperty("transaction-date")
 		private Date transactionDate;
 		
 		//@Size(min=10, max=10, message="INVALID_MOBILE_NUMBER")
 		//@NotNull(message="MISSING_MOBILE_NUMBER")
-		@JsonProperty("given-by")
+		//@JsonProperty("given-by")
 		private String givenBy;
 		
 		//@NotNull(message="MISSING_CONTACT_PERSON")
-		@JsonProperty("reference-no")
+		//@JsonProperty("reference-no")
 		private String referenceNo;
 		
-		@JsonProperty("comments")
+		//@JsonProperty("comments")
 		private String comments;
 
 		public Long getId() {

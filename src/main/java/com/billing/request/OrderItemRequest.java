@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class OrderItemRequest {
 
-	@JsonProperty("item-id")
+	//@JsonProperty("item-id")
 	@NotNull(message="MISSING_ID")
 	private Long itemId;
 	

@@ -5,16 +5,16 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SignupRequest {
-	@JsonProperty("password")
+	//@JsonProperty("password")
 	private String password;
 	
-	@JsonProperty("user-name")
+	//@JsonProperty("user-name")
 	private String userName;
 	
-	@JsonProperty("email-id")
+	//@JsonProperty("email-id")
 	private String emailId;
 	
-	@JsonProperty("roles")
+	//@JsonProperty("roles")
 	private Set<String> roles;
 
 	public String getPassword() {

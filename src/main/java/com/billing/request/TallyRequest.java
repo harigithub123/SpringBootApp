@@ -9,10 +9,10 @@ public class TallyRequest implements Serializable {
 
 		private static final long serialVersionUID = -187514924337443316L;
 		
-		@JsonProperty("from-date")
+		//@JsonProperty("from-date")
 		private Date fromDate;
 		
-		@JsonProperty("to-date")
+		//@JsonProperty("to-date")
 		private Date toDate;
 		
 		public Date getFromDate() {

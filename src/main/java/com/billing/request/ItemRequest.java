@@ -10,19 +10,19 @@ public class ItemRequest  implements Serializable {
 
 	private static final long serialVersionUID = -187514924337443316L;
 	
-	@JsonProperty("id")
+	//@JsonProperty("id")
 	private Long id;
 	
-	@JsonProperty("item-name")
+	//@JsonProperty("item-name")
 	@NotNull(message="MISSING_ITEM_NAME")
 	private String itemName;
 	
 	@NotNull(message="MISSING_DISPLAY_ORDER")
-	@JsonProperty("display-order")
+	//@JsonProperty("display-order")
 	private Integer displayOrder;
 	
 	@NotNull(message="MISSING_ITEM_PRICE")
-	@JsonProperty("item-price")
+	//@JsonProperty("item-price")
 	private Double itemPrice;
 
 	public Long getId() {

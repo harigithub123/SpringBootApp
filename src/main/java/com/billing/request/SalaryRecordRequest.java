@@ -8,28 +8,28 @@ public class SalaryRecordRequest  implements Serializable {
 
 	private static final long serialVersionUID = -187514924337443316L;
 	
-	@JsonProperty("id")
+	//@JsonProperty("id")
 	private Long id;
 	
-	@JsonProperty("employee-id")
+	//@JsonProperty("employee-id")
 	//@NotNull(message="MISSING_OFFICE_NO")
 	private Long employeeId;
 	
 	//@Size(min=10, max=10, message="INVALID_MOBILE_NUMBER")
 	//@NotNull(message="MISSING_MOBILE_NUMBER")
-	@JsonProperty("final-amount")
+	//@JsonProperty("final-amount")
 	private Double finalAmount;
 
 	//@NotNull(message="MISSING_EMAIL_ID")
 	//@Pattern(regexp=AppConstants.EMAIL_REGEX, message="INVALID_EMAIL_ID")
-	@JsonProperty("deduction")
+	//@JsonProperty("deduction")
 	private Double deduction;
 	
 	//@NotNull(message="MISSING_OFFICE_NAME")
-	@JsonProperty("number-of-leaves")
+	//@JsonProperty("number-of-leaves")
 	private int noOfLeaves;
 	
-	@JsonProperty("month")
+	//@JsonProperty("month")
 	private String month;
 	
 	public Long getId() {

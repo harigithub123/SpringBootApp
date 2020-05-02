@@ -9,19 +9,14 @@ public class BillRequest implements Serializable {
 
 		private static final long serialVersionUID = -187514924337443316L;
 		
-		@JsonProperty("from-date")
 		private Date fromDate;
 		
-		@JsonProperty("to-date")
 		private Date toDate;
 		
-		@JsonProperty("customer-id")
 		private Long customerId;
 		
-		@JsonProperty("bill-period")
 		private String billPeriod;
 		
-		@JsonProperty("month-last-date")
 		private Date billLastDate;
 
 		public Date getFromDate() {

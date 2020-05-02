@@ -11,28 +11,28 @@ public class ExpenseRequest implements Serializable {
 
 		private static final long serialVersionUID = -187514924337443316L;
 		
-		@JsonProperty("id")
+		//@JsonProperty("id")
 		private Long id;
 		
 		@NotNull(message="category")
 		private String category;
 		
-		@JsonProperty("transaction-date")
+		//@JsonProperty("transaction-date")
 		private Date transactionDate;
 		
-		@JsonProperty("amount")
+		//@JsonProperty("amount")
 		private double amount;
 		
-		@JsonProperty("goods")
+		//@JsonProperty("goods")
 		private String goods;
 
-		@JsonProperty("user-id")
+		//@JsonProperty("user-id")
 		private Long userId;
 		
-		@JsonProperty("note")
+		//@JsonProperty("note")
 		private String note;
 		
-		@JsonProperty("paid")
+		//@JsonProperty("paid")
 		private String paid;
 		
 		public Long getId() {

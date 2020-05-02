@@ -9,13 +9,13 @@ public class PayBillRequest implements Serializable {
 
 		private static final long serialVersionUID = -187514924337443316L;
 		
-		@JsonProperty("payment-date")
+		//@JsonProperty("payment-date")
 		private Date paymentDate;
 		
-		@JsonProperty("paid-amount")
+		//@JsonProperty("paid-amount")
 		private Double paidAmount;
 		
-		@JsonProperty("bill-no")
+		//@JsonProperty("bill-no")
 		private Long billNo;
 
 		public Date getPaymentDate() {

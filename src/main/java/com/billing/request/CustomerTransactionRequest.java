@@ -11,33 +11,33 @@ public class CustomerTransactionRequest  implements Serializable {
 
 	private static final long serialVersionUID = -187514924337443316L;
 	
-	@JsonProperty("id")
+	//@JsonProperty("id")
 	private Long id;
 	
-	@JsonProperty("transaction-date")
+	//@JsonProperty("transaction-date")
 	@NotNull(message="MISSING_TRANSACTION_DATE")
 	private Date tranDate;
 	
 	@NotNull(message="MISSING_TRANSACTION_MODE")
-	@JsonProperty("transaction-mode")
+	//@JsonProperty("transaction-mode")
 	private String tranMode;
 	
 	@NotNull(message="MISSING_TRANSACTION_AMOUNT")
-	@JsonProperty("amount")
+	//@JsonProperty("amount")
 	private Double tranAmount;
 	
 	@NotNull(message="MISSING_RECEIVED_BY")
-	@JsonProperty("received-by")
+	//@JsonProperty("received-by")
 	private String receivedBy;
 
-	@JsonProperty("comment")
+	//@JsonProperty("comment")
 	private String tranComment;
 
 	@NotNull(message="MISSING_CUSTOMER_ID")
-	@JsonProperty("customer-id")
+	//@JsonProperty("customer-id")
 	private Long customerId;
 	
-	@JsonProperty("reference-no")
+	//@JsonProperty("reference-no")
 	private String referenceNo;
 
 	public Long getId() {

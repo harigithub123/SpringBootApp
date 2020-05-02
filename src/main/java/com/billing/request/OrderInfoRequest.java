@@ -12,22 +12,22 @@ public class OrderInfoRequest  implements Serializable {
 
 	private static final long serialVersionUID = -187514924337443316L;
 	
-	@JsonProperty("id")
+	//@JsonProperty("id")
 	private Long id;
 	
-	@JsonProperty("customer-id")
+	//@JsonProperty("customer-id")
 	@NotNull(message="MISSING_CUSTOMER_ID")
 	private Long customerId;
 	
-	@JsonProperty("user-id")
+	//@JsonProperty("user-id")
 	@NotNull(message="MISSING_USER_ID")
 	private Long userId;
 	
 	@NotNull(message="MISSING_ORDER_DATE")
-	@JsonProperty("order-date")
+	//@JsonProperty("order-date")
 	private Date orderDate;
 	
-	@JsonProperty("items")
+	//@JsonProperty("items")
 	private List<OrderItemRequest> items;
 	
 	public List<OrderItemRequest> getItems() {

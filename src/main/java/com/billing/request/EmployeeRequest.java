@@ -14,43 +14,43 @@ public class EmployeeRequest implements Serializable {
 
 		private static final long serialVersionUID = -187514924337443316L;
 		
-		@JsonProperty("id")
+		//@JsonProperty("id")
 		private Long id;
 		
-		@JsonProperty("person-id")
+		//@JsonProperty("person_id")
 		private Long personId;
 		
-		@JsonProperty("joining-date")
+		//@JsonProperty("joining_date")
 		private Date joiningDate;
 		
-		@JsonProperty("month-salary")
+		//@JsonProperty("month_salary")
 		private double monthSalary;
 		
-		@JsonProperty("person-name")
+		//@JsonProperty("person_name")
 		@NotNull(message="MISSING_PERSON_NME")
 		private String name;
 		
 		@Size(min=10, max=10, message="INVALID_MOBILE_NUMBER")
 		@NotNull(message="MISSING_MOBILE_NUMBER")
-		@JsonProperty("mobile-number")
+		//@JsonProperty("mobile_number")
 		private String mobileNumber;
 
 		//@NotNull(message="MISSING_OFFICE_NAME")
 		//@Size(min=10, max=10, message="INVALID_MOBILE_NUMBER")
-		@JsonProperty("aadhar-number")
+		//@JsonProperty("aadhar_number")
 		private String aadharNo;
 		
 		//@NotNull(message="MISSING_CONTACT_PERSON")
-		@JsonProperty("pan-number")
+		//@JsonProperty("pan_number")
 		private String panNo;
 		
 		//@NotNull(message="MISSING_EMAIL_ID")
 		//@Pattern(regexp=AppConstants.EMAIL_REGEX, message="INVALID_EMAIL_ID")
-		@JsonProperty("dob")
+		//@JsonProperty("dob")
 		private Date dob;
 		
 		//@NotNull(message="MISSING_CONTACT_PERSON")
-		@JsonProperty("address")
+		//@JsonProperty("address")
 		private String address;
 
 		public Long getId() {

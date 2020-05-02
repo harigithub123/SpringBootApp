@@ -13,32 +13,32 @@ public class CustomerRequest  implements Serializable {
 
 	private static final long serialVersionUID = -187514924337443316L;
 	
-	@JsonProperty("id")
+	//@JsonProperty("id")
 	private Long id;
 	
-	@JsonProperty("office-no")
+	//@JsonProperty("office_no")
 	@NotNull(message="MISSING_OFFICE_NO")
 	private String officeNo;
 	
 	@NotNull(message="MISSING_OFFICE_NAME")
-	@JsonProperty("office-name")
+	//@JsonProperty("office_name")
 	private String officeName;
 	
 	@NotNull(message="MISSING_EMAIL_ID")
 	@Pattern(regexp=AppConstants.EMAIL_REGEX, message="INVALID_EMAIL_ID")
-	@JsonProperty("email-id")
+	//@JsonProperty("email_id")
 	private String emailId;
 	
 	@Size(min=10, max=10, message="INVALID_MOBILE_NUMBER")
 	@NotNull(message="MISSING_MOBILE_NUMBER")
-	@JsonProperty("mobile-number")
+	//@JsonProperty("mobile_number")
 	private String mobileNumber;
 	
 	@NotNull(message="MISSING_CONTACT_PERSON")
-	@JsonProperty("contact-person")
+	//@JsonProperty("contact_person")
 	private String contactPersion;
 	
-	@JsonProperty("need-to-send-sms")
+	//@JsonProperty("need_to_send_sms")
 	private boolean needToSendSms;
 
 	public Long getId() {
