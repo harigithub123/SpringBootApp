@@ -1,5 +1,6 @@
 package com.billing.model;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,6 +9,12 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.springframework.security.core.GrantedAuthority;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @Table(	name = "users", 
 		uniqueConstraints = { 
@@ -32,6 +39,10 @@ public class User {
 	@Size(max = 120)
 	private String password;
 
+	@JsonManagedReference
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER, targetEntity = UserRoleAuthority.class)
+	private Set<UserRoleAuthority> authorities;
+	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(	name = "user_roles", 
 				joinColumns = @JoinColumn(name = "user_id"), 
@@ -47,8 +58,8 @@ public class User {
 		this.password = password;
 	}
 
-	public User(Long userId) {
-		this.id = userId;
+	public User(Long id) {
+		this.id = id;
 	}
 
 	public Long getId() {
@@ -89,5 +100,13 @@ public class User {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+	
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return (Collection<? extends GrantedAuthority>) authorities;
+	}
+
+	public void setAuthorities(Set<UserRoleAuthority> authorities) {
+		this.authorities = authorities;
 	}
 }

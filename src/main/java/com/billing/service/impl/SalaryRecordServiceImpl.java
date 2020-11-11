@@ -11,8 +11,8 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.billing.dao.SalaryRecordRepository;
+import com.billing.dto.SalaryRecordRequest;
 import com.billing.model.SalaryRecord;
-import com.billing.request.SalaryRecordRequest;
 import com.billing.response.SalaryRecordResponse;
 import com.billing.service.SalaryRecordService;
 import com.billing.service.util.ServiceRequestUtil;

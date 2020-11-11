@@ -18,19 +18,18 @@ public class Customer {
     private Long id;
 	
 	@Column(unique = true)
-	private String officeNo;
-	
-	private String contactPerson;
+	private String address;
 	
 	@Column(unique = true)
-	private String officeName;
+	private String name;
 	
 	@Column(unique = true)
 	private String mobileNumber;
 	
 	@Column(unique = true)
 	private String emailId;
-	private boolean isSmsRequired;
+	
+	private boolean needToSendSms;
 	
 	
 	public Customer() {
@@ -46,24 +45,23 @@ public class Customer {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getOfficeNo() {
-		return officeNo;
+	
+	public String getAddress() {
+		return address;
 	}
-	public void setOfficeNo(String officeNo) {
-		this.officeNo = officeNo;
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
-	public String getContactPerson() {
-		return contactPerson;
+
+	public String getName() {
+		return name;
 	}
-	public void setContactPerson(String contactPerson) {
-		this.contactPerson = contactPerson;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getOfficeName() {
-		return officeName;
-	}
-	public void setOfficeName(String officeName) {
-		this.officeName = officeName;
-	}
+
 	public String getMobileNumber() {
 		return mobileNumber;
 	}
@@ -76,10 +74,13 @@ public class Customer {
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
-	public boolean isSmsRequired() {
-		return isSmsRequired;
+
+	public boolean isNeedToSendSms() {
+		return needToSendSms;
 	}
-	public void setIsSmsRequired(boolean isSmsRequired) {
-		this.isSmsRequired = isSmsRequired;
+
+	public void setNeedToSendSms(boolean needToSendSms) {
+		this.needToSendSms = needToSendSms;
 	}
+	
 }

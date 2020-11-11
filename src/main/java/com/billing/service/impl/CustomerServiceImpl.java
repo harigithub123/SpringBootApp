@@ -8,8 +8,8 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.billing.dao.CustomerRepository;
+import com.billing.dto.CustomerRequest;
 import com.billing.model.Customer;
-import com.billing.request.CustomerRequest;
 import com.billing.service.CustomerService;
 import com.billing.service.util.ServiceRequestUtil;
 
@@ -24,12 +24,12 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public void addCustomer(CustomerRequest request) {
-		this.customerRespository.save(ServiceRequestUtil.getCustomer(request));
+		//this.customerRespository.save(ServiceRequestUtil.getCustomer(request));
 	}
 
 	@Override
 	public void updateCustomer(CustomerRequest request) {
-		this.customerRespository.save(ServiceRequestUtil.getCustomer(request));
+		//this.customerRespository.save(ServiceRequestUtil.getCustomer(request));
 	}
 
 	@Override

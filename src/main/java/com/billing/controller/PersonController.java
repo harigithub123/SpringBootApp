@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.billing.request.PersonRequestResponse;
+import com.billing.dto.PersonRequestResponse;
 import com.billing.response.Errors;
 import com.billing.service.impl.PersonServiceImpl;
 import com.billing.validator.BeanValidator;

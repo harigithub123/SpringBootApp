@@ -2,7 +2,7 @@ package com.billing.service;
 
 import org.springframework.stereotype.Service;
 
-import com.billing.request.LoginRequest;
+import com.billing.dto.LoginRequest;
 
 @Service
 public interface LoginService {

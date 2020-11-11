@@ -37,8 +37,8 @@ public class CustomerTransactionResponse  implements Serializable {
 	private String tranComment;
 
 	@NotNull(message="MISSING_CUSTOMER_ID")
-	@JsonProperty("office-name")
-	private String officeName;
+	@JsonProperty("name")
+	private String name;
 	
 	@JsonProperty("reference-no")
 	private String referenceNo;
@@ -99,12 +99,14 @@ public class CustomerTransactionResponse  implements Serializable {
 		this.tranComment = tranComment;
 	}
 
-	public String getOfficeName() {
-		return officeName;
+	public String getName() {
+		return name;
 	}
 
-	public void setOfficeName(String officeName) {
-		this.officeName = officeName;
+	public void setName(String name) {
+		this.name = name;
 	}
+
+	
 
 }

@@ -2,45 +2,72 @@ package com.billing.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
+
+import org.springframework.security.core.GrantedAuthority;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
+
 
 @Entity
-@Table(name = "roles")
-public class Role {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+@Table(name = "role" ,uniqueConstraints = @UniqueConstraint(columnNames = "role"))
+public class Role implements GrantedAuthority{
+	
+	@Id 
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "roleid")
+	private Integer roleId;
+	
+	@Column(name = "role")
+	private String role;
+	
+	@Column(name = "isactiveflag")
+	private Integer isActiveFlag;
 
-	@Enumerated(EnumType.STRING)
-	@Column(length = 20)
-	private ERole name;
-
-	public Role() {
-
+	
+	public Integer getRoleId() {
+		return roleId;
+	}
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	public Integer getIsActiveFlag() {
+		return isActiveFlag;
+	}
+	public void setIsActiveFlag(Integer isActiveFlag) {
+		this.isActiveFlag = isActiveFlag;
+	}
+	
+	@JsonIgnore
+	@Override
+	@Transient
+	public String getAuthority() {
+		return role;
 	}
 
-	public Role(ERole name) {
-		this.name = name;
+	@Transient
+	public void setAuthority(String role) {
+		this.role = role;
+	} 
+	
+	@Override
+	public String toString() {
+		return "Role [roleId=" + roleId + ", role=" + role + ", isActiveFlag=" + isActiveFlag + "]";
 	}
+	
+	
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public ERole getName() {
-		return name;
-	}
-
-	public void setName(ERole name) {
-		this.name = name;
-	}
 }

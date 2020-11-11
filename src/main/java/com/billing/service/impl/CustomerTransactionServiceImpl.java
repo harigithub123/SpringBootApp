@@ -9,8 +9,8 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.billing.dao.CustomerTransactionRespository;
+import com.billing.dto.CustomerTransactionRequest;
 import com.billing.model.CustomerTransaction;
-import com.billing.request.CustomerTransactionRequest;
 import com.billing.response.CustomerTransactionResponse;
 import com.billing.service.CustomerTransactionService;
 import com.billing.service.util.ServiceRequestUtil;
@@ -62,7 +62,7 @@ public class CustomerTransactionServiceImpl implements CustomerTransactionServic
 	public CustomerTransactionResponse getTransactionResponse(CustomerTransaction transaction) {
 		CustomerTransactionResponse response = new CustomerTransactionResponse();
 		response.setId(transaction.getId());
-		response.setOfficeName(transaction.getCustomer().getOfficeName());
+		response.setName(transaction.getCustomer().getName());
 		response.setReceivedBy(transaction.getReceivedBy());
 		response.setReferenceNo(transaction.getReferenceNo());
 		response.setTranAmount(transaction.getAmount());

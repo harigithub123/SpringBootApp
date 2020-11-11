@@ -4,8 +4,8 @@ services:
     container_name: hk-mysql
     image: mysql/mysql-server:5.7
     environment:
-      MYSQL_DATABASE: billing
-      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: springbootcargo
+      MYSQL_ROOT_PASSWORD: Admin@123
       MYSQL_ROOT_HOST: '%'
     ports:
     - "3306:3306"

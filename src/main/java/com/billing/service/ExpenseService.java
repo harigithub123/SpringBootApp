@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.billing.request.ExpenseRequest;
+import com.billing.dto.ExpenseRequest;
 import com.billing.response.ExpenseResponse;
 
 @Service

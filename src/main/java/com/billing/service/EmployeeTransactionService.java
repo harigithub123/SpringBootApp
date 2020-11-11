@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.billing.dto.EmployeeTransactionRequest;
 import com.billing.model.EmployeeTransaction;
-import com.billing.request.EmployeeTransactionRequest;
 import com.billing.response.EmployeeTransactionResponse;
 
 @Service

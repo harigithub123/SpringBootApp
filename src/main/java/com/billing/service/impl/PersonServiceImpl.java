@@ -7,8 +7,8 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.billing.dao.PersonRepository;
+import com.billing.dto.PersonRequestResponse;
 import com.billing.model.Person;
-import com.billing.request.PersonRequestResponse;
 import com.billing.service.PersonService;
 import com.billing.service.util.ServiceRequestUtil;
 

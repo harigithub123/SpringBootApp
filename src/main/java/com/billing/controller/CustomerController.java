@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.billing.dto.CustomerRequest;
+import com.billing.dto.CustomerTransactionRequest;
 import com.billing.model.Customer;
-import com.billing.request.CustomerRequest;
-import com.billing.request.CustomerTransactionRequest;
 import com.billing.response.CustomerTransactionResponse;
 import com.billing.response.Errors;
 import com.billing.service.CustomerService;

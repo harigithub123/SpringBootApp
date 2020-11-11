@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.billing.request.UserRequest;
+import com.billing.dto.UserDTO;
 import com.billing.response.Errors;
 import com.billing.service.impl.UserServiceImpl;
 import com.billing.validator.BeanValidator;
@@ -32,13 +32,13 @@ public class UserController {
     }
 	
 	@PostMapping(path="/register", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> createUser(@Valid @RequestBody UserRequest userRequest,BindingResult result) {
+	public ResponseEntity<Object> createUser(@Valid @RequestBody UserDTO userRequest,BindingResult result) {
 		
 		Errors errorList = validator.validate(result);
 		if(!errorList.getErrorList().isEmpty()) {
 			return new ResponseEntity<Object>(errorList, HttpStatus.BAD_REQUEST);
 		} else {
-			this.userService.addUser(userRequest);
+			this.userService.saveUser(userRequest);
 			return new ResponseEntity<Object>(HttpStatus.OK);
 		}
 	}

@@ -1,69 +1,43 @@
 package com.billing.service.util;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.billing.dao.ItemRepository;
+import com.billing.dto.CustomerTransactionRequest;
+import com.billing.dto.EmployeeRequest;
+import com.billing.dto.EmployeeTransactionRequest;
+import com.billing.dto.ExpenseRequest;
+import com.billing.dto.LoginRequest;
+import com.billing.dto.PersonRequestResponse;
+import com.billing.dto.SalaryRecordRequest;
+import com.billing.dto.UserRequest;
+import com.billing.dto.destinations.DomesticDestinationDTO;
+import com.billing.dto.destinations.InternationalDestinationDTO;
+import com.billing.dto.masterdata.ChargesTaxesRequest;
+import com.billing.dto.masterdata.PreferenceDTO;
+import com.billing.dto.masterdata.WeightFactorRequest;
+import com.billing.dto.shipper.ShipperDTO;
 import com.billing.model.Customer;
 import com.billing.model.CustomerTransaction;
-import com.billing.model.DailyCollection;
 import com.billing.model.Employee;
 import com.billing.model.EmployeeTransaction;
 import com.billing.model.Expense;
-import com.billing.model.Item;
-import com.billing.model.ItemStock;
-import com.billing.model.ItemTransaction;
-import com.billing.model.ItemTransactionDetails;
 import com.billing.model.Login;
-import com.billing.model.OrderInfo;
-import com.billing.model.OrderInfoDetails;
+import com.billing.model.Organization;
 import com.billing.model.Person;
 import com.billing.model.SalaryRecord;
 import com.billing.model.User;
-import com.billing.request.CustomerRequest;
-import com.billing.request.CustomerTransactionRequest;
-import com.billing.request.DailyCollectionRequest;
-import com.billing.request.EmployeeRequest;
-import com.billing.request.EmployeeTransactionRequest;
-import com.billing.request.ExpenseRequest;
-import com.billing.request.ItemRequest;
-import com.billing.request.ItemTransactionRequest;
-import com.billing.request.LoginRequest;
-import com.billing.request.OrderInfoRequest;
-import com.billing.request.OrderItemRequest;
-import com.billing.request.PersonRequestResponse;
-import com.billing.request.SalaryRecordRequest;
-import com.billing.request.UserRequest;
+import com.billing.model.destinations.DomesticDestination;
+import com.billing.model.destinations.InternationalDestination;
+import com.billing.model.masterdata.Charge;
+import com.billing.model.masterdata.ChargesTaxes;
+import com.billing.model.masterdata.Preference;
+import com.billing.model.masterdata.WeightFactor;
+import com.billing.model.shipper.Shipper;
 import com.billing.response.ExpenseResponse;
-import com.billing.response.ItemTransactionResponse;
-import com.billing.response.OrderItemResponse;
 
 public class ServiceRequestUtil {
-	
-	@Autowired
-	ItemRepository itemRepository; 
-	
-	public static Customer getCustomer(CustomerRequest request) {
-		Customer customer = new Customer();
-		customer.setId(request.getId());
-		customer.setContactPerson(request.getContactPersion());
-		customer.setEmailId(request.getEmailId());
-		customer.setMobileNumber(request.getMobileNumber());
-		customer.setOfficeNo(request.getOfficeNo());
-		customer.setOfficeName(request.getOfficeName());
-		customer.setIsSmsRequired(request.isNeedToSendSms());
-		return customer;
-	}
-	
-	public List<ItemStock> getItemStock(ItemTransactionRequest request) {
-		List<ItemStock> items = getStockItems(request.getItems());
-		return items;
-	}
 
 	public static CustomerTransaction getCustomerTransaction(CustomerTransactionRequest request) {
 		CustomerTransaction tran = new CustomerTransaction();
@@ -76,49 +50,6 @@ public class ServiceRequestUtil {
 		tran.setTransactionDate(request.getTranDate());
 		tran.setReferenceNo(request.getReferenceNo());
 		return tran;
-	}
-	
-	public Item getItem(ItemRequest request) {
-		Item item = new Item();
-		item.setId(request.getId());
-		item.setDisplayOrder(request.getDisplayOrder());
-		item.setItemName(request.getItemName());
-		item.setItemPrice(request.getItemPrice());
-		return item;
-	}
-	
-	public OrderInfo getOrder(OrderInfoRequest request) {
-		OrderInfo orderInfo = new OrderInfo();
-		orderInfo.setCustomer(new Customer(request.getCustomerId()));
-		orderInfo.setUser(new User(request.getUserId()));
-		orderInfo.setOrderDate(request.getOrderDate());
-		orderInfo.setItems(getOrderItems(request.getItems(), orderInfo));
-		orderInfo.setPaymentStatus("Pending");
-		orderInfo.setModificationDate(new Date());
-		return orderInfo;
-	}
-
-	private static List<OrderInfoDetails> getOrderItems(List<OrderItemRequest> requestItems, OrderInfo orderInfo) {
-		List<OrderInfoDetails> orderItems = new ArrayList<OrderInfoDetails>();
-		for(OrderItemRequest requestItem : requestItems) {
-			OrderInfoDetails item = new OrderInfoDetails();
-			item.setQuantity(requestItem.getQuantity());
-			item.setItem(new Item(requestItem.getItemId()));
-			item.setOrderInfo(orderInfo);
-			orderItems.add(item);
-		}
-		return orderItems;
-	}
-	
-	private static List<ItemStock> getStockItems(List<OrderItemRequest> requestItems) {
-		List<ItemStock> orderItems = new ArrayList<ItemStock>();
-		for(OrderItemRequest requestItem : requestItems) {
-			ItemStock item = new ItemStock();
-			item.setQuantity(requestItem.getQuantity());
-			item.setId(requestItem.getItemId());
-			orderItems.add(item);
-		}
-		return orderItems;
 	}
 	
 	public User getUser(UserRequest request) {
@@ -161,16 +92,6 @@ public class ServiceRequestUtil {
 		t.setTransactionDate(request.getTransactionDate());
 		t.setTransactionMode(request.getTransactionMode());
 		return t;
-	}
-
-	public static DailyCollection getDailyCollection(DailyCollectionRequest request) {
-		DailyCollection p = new DailyCollection();
-		p.setCash(request.getCash());
-		p.setCredit(request.getCredit());
-		p.setId(request.getId());
-		p.setOnline(request.getOnline());
-		p.setTransactionDate(request.getTransactionDate());
-		return p;
 	}
 
 	public static SalaryRecord getSalaryRecord(SalaryRecordRequest request) {
@@ -221,61 +142,7 @@ public class ServiceRequestUtil {
 		return r;
 	}
 	
-	public static Map<Long, List<OrderItemResponse>> getTransactionResponse(List<ItemTransaction> stocks) {
-		Map<Long, List<OrderItemResponse>> map = new HashMap<Long, List<OrderItemResponse>>();
-		for(ItemTransaction stock : stocks) {
-			map.put(stock.getTransactionDate().getTime(), ServiceRequestUtil.getOrderItemResponse(stock.getItemTransactionDetails(), "SOLD"));
-		}
-		return map;
-	}
 	
-	private static ItemTransactionResponse getTransactionResponse(ItemTransaction t) {
-		ItemTransactionResponse res = new ItemTransactionResponse();
-		res.setId(t.getId());
-		res.setTransactionDate(t.getTransactionDate());
-		res.setTransactionType(t.getTransactionType());
-		res.setUserName(t.getUser().getUserName());
-		res.setItems(getOrderItemResponse(t.getItemTransactionDetails(), t.getTransactionType(), res));
-		return res;
-	}
-
-	public static List<OrderItemResponse> getOrderItemResponse(List<ItemTransactionDetails> items, String transactionType, ItemTransactionResponse res) {
-		List<OrderItemResponse> list = new ArrayList<OrderItemResponse>();
-		Double total=0.0;
-		for(ItemTransactionDetails tranItem : items) {
-			Item item = tranItem.getItem();
-			Double price = Constants.TRAN_TYPE_SOLD.equals(transactionType) ? tranItem.getQuantity()*item.getItemPrice() : null;
-			list.add(new OrderItemResponse(item.getItemName(), tranItem.getQuantity(), price));
-			if(price != null) {
-				total = total + price;
-			}
-		}
-		res.setTotal(total);
-		return list;
-	}
-	
-	public static List<OrderItemResponse> getOrderItemResponse(List<ItemTransactionDetails> items, String transactionType) {
-		List<OrderItemResponse> list = new ArrayList<OrderItemResponse>();
-		Double total=0.0;
-		for(ItemTransactionDetails tranItem : items) {
-			Item item = tranItem.getItem();
-			Double price = Constants.TRAN_TYPE_SOLD.equals(transactionType) ? tranItem.getQuantity()*item.getItemPrice() : null;
-			list.add(new OrderItemResponse(item.getItemName(), tranItem.getQuantity(), price));
-			if(price != null) {
-				total = total + price;
-			}
-		}
-		return list;
-	}
-
-	public static Double getOrderTotal(OrderInfo e) {
-		Double amount=0.0;
-		List<OrderInfoDetails> details = e.getItems();
-		for(OrderInfoDetails d : details) {
-			amount+=d.getQuantity()*d.getItem().getItemPrice();
-		}
-		return amount;
-	}
 
 	public static Person getPerson(PersonRequestResponse request) {
 		Person p = new Person();
@@ -284,4 +151,62 @@ public class ServiceRequestUtil {
 		p.setName(request.getMobileNumber());
 		return p;
 	}
+	
+	public static InternationalDestination getInternationalDestination(InternationalDestinationDTO request) {
+		InternationalDestination d = new InternationalDestination();
+		d.setId(request.getId());
+		d.setCountryCode(request.getCountryCode());
+		d.setCountryName(request.getCountryName());
+		return d;
+	}
+	
+	public static DomesticDestination getDomesticDestination(DomesticDestinationDTO request) {
+		DomesticDestination d = new DomesticDestination();
+		d.setId(request.getId());
+		d.setPinCode(request.getPinCode());
+		d.setDestination(request.getDestination());
+		d.setZone(request.getZone());
+		return d;
+	}
+	
+	public static Shipper getShipper(ShipperDTO request) {
+		Shipper s = new Shipper();
+		s.setId(request.getId());
+		s.setCode(request.getCode());
+		s.setName(request.getName());
+		s.setService(request.getService());
+		s.setServiceType(request.getServiceType());
+		s.setDispFscForEachAWB(request.isDispFscForEachAWB());
+		s.setDispGstForEachAWB(request.isDispGstForEachAWB());
+		s.setRoundUpBoxWeight(request.isRoundUpBoxWeight());
+		s.setOrganization(new Organization(request.getOrganizationId()));
+		return s;
+	}
+	
+	public static Preference getPreference(PreferenceDTO request) {
+		Preference p = new Preference();
+		//p.setId(request.getId());
+		p.setShipper(new Shipper(request.getShipperId()));
+		p.setColumnName(request.getColumName());
+		p.setColumnSize(request.getColumnSize());
+		p.setAlignment(request.getAlignment());
+		p.setDisplayOrder(request.getDisplayOrder());
+		return p;
+	}
+
+	public static ChargesTaxes getChargesTaxes(ChargesTaxesRequest request) {
+		ChargesTaxes ct = new ChargesTaxes();
+		ct.setId(request.getId());
+		ct.setTax(request.getTax());
+		ct.setCharge(new Charge(request.getChargeId()));
+		ct.setShipper(new Shipper(request.getShipperId()));
+		return ct;
+	}
+
+	public static WeightFactor getWeightFactor(WeightFactorRequest request) {
+		return new WeightFactor(new Shipper(request.getShipperId()), request.getMode(), request.getModeClass(),
+				request.getPackageType(), request.getVolumetricFactor(), request.getMinWeight(),
+				request.getWeightSlab(), request.getSlots());
+	}
+	
 }

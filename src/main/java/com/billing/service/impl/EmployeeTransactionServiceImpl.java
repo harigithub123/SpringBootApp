@@ -10,9 +10,9 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.billing.dao.EmployeeTransactionRepository;
+import com.billing.dto.EmployeeTransactionRequest;
 import com.billing.model.CustomerTransaction;
 import com.billing.model.EmployeeTransaction;
-import com.billing.request.EmployeeTransactionRequest;
 import com.billing.response.CustomerTransactionResponse;
 import com.billing.response.EmployeeTransactionResponse;
 import com.billing.service.EmployeeTransactionService;

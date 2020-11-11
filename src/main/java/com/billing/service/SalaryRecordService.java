@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.billing.dto.SalaryRecordRequest;
 import com.billing.model.SalaryRecord;
-import com.billing.request.SalaryRecordRequest;
 import com.billing.response.SalaryRecordResponse;
 
 @Service

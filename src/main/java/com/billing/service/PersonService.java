@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.billing.dto.PersonRequestResponse;
 import com.billing.model.Person;
-import com.billing.request.PersonRequestResponse;
 
 @Service
 public interface PersonService {
